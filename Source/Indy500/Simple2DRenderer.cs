@@ -24,7 +24,7 @@ namespace Indy500
             {
                 for(int column = 0; column < race.Track.Columns; column++)
                 {
-                    spriteBatch.Draw(rectangle, new Rectangle((int)(column * tileSize), (int)(row * tileSize), (int)tileSize, (int)tileSize), race.Track[row, column] == TrackTileType.Dirt ? Color.Green : Color.Gray);
+                    spriteBatch.Draw(rectangle, new Rectangle((int)(column * tileSize), (int)(row * tileSize), (int)tileSize, (int)tileSize), race.Track[row, column] == TrackTileType.Dirt ? Color.SaddleBrown : Color.Gray);
                 }
             }
 
