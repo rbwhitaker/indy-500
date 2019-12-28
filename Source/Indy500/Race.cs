@@ -5,15 +5,17 @@ using System.Linq;
 
 namespace Indy500
 {
-    public partial class Race
+    public class Race
     {
         public Track Track { get; }
 
         public IReadOnlyList<Car> Cars { get; }
+        public IGameMode Mode { get; }
 
-        public Race(Track track, IEnumerable<Car> cars)
+        public Race(Track track, IEnumerable<Car> cars, IGameMode gameMode)
         {
             Track = track;
+            Mode = gameMode;
             Cars = cars.ToList();
         }
 
@@ -25,8 +27,10 @@ namespace Indy500
 
         public void Update(GameTime gameTime)
         {
+            if (Mode.IsOver()) return;
+
             const float accelerationRate = 2f;
-            const float turnRate = 1f;
+            const float turnRate = 2f;
 
             foreach(Car car in Cars)
             {
@@ -54,6 +58,8 @@ namespace Indy500
                 
                 if (car.Speed > maxSpeed) car.Speed = maxSpeed;
             }
+
+            Mode.Update(gameTime, this);
         }
     }
 }

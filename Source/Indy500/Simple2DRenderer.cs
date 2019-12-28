@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,10 +9,11 @@ namespace Indy500
     {
         private Texture2D car;
         private Texture2D rectangle;
+        private SpriteFont mainFont;
+
         private float tileSize = 20;
         private SpriteBatch spriteBatch;
-        private DefaultBackgroundMusicPlaybackService music;
-
+        
         public void Draw(Race race, GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -31,18 +33,24 @@ namespace Indy500
                 Vector2 scale = new Vector2(1f / car.Width * tileSize * c.Size.X, 1f / car.Height * tileSize * c.Size.Y);
                 spriteBatch.Draw(car, c.Position * tileSize, null, carColor, c.Heading, centerPoint, scale, SpriteEffects.None, 0);
             }
+
+            if(race.Mode is RaceMode raceMode)
+            {
+                spriteBatch.DrawString(mainFont, raceMode.ScoreForCar(race.Cars[0]).ToString(), new Vector2(0, 0), Color.White);
+                spriteBatch.DrawString(mainFont, raceMode.ScoreForCar(race.Cars[1]).ToString(), new Vector2(500, 0), Color.White);
+                if (raceMode.IsOver())
+                    spriteBatch.DrawString(mainFont, raceMode.Winner == race.Cars[0] ? "Player 1 Wins!" : "Player 2 Wins!", new Vector2(500, 300), Color.Yellow);
+            }
             spriteBatch.End();
         }
+
 
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager content)
         {
             spriteBatch = new SpriteBatch(graphicsDevice);
             car = content.Load<Texture2D>("Car");
             rectangle = content.Load<Texture2D>("Rectangle");
-            music = new DefaultBackgroundMusicPlaybackService(content);
-            System.Random rand = new System.Random();
-            int SongNumber = rand.Next(15) + 1;
-            music.StartBackgroundMusic(SongNumber.ToString());
+            mainFont = content.Load<SpriteFont>("MainFont");
         }
     }
 }
