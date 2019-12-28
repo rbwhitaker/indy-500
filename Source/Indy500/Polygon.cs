@@ -13,5 +13,14 @@ namespace Indy500
         }
 
         public BoundingBox BoundingBox => new BoundingBox(new Vector3(Points.Min(p => p.X), Points.Min(p => p.Y), 0), new Vector3(Points.Max(p => p.X), Points.Max(p => p.Y), 0));
+
+        public IEnumerable<LineSegment> Segments
+        {
+            get
+            {
+                for (int index = 0; index < Points.Count; index++)
+                    yield return new LineSegment(Points[index], Points[(index + 1) % Points.Count]);
+            }
+        }
     }
 }

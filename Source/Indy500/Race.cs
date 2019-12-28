@@ -5,15 +5,17 @@ using System.Linq;
 
 namespace Indy500
 {
-    public partial class Race
+    public class Race
     {
         public Track Track { get; }
 
         public IReadOnlyList<Car> Cars { get; }
+        private readonly IGameMode gameMode;
 
-        public Race(Track track, IEnumerable<Car> cars)
+        public Race(Track track, IEnumerable<Car> cars, IGameMode gameMode)
         {
             Track = track;
+            this.gameMode = gameMode;
             Cars = cars.ToList();
         }
 
@@ -53,6 +55,8 @@ namespace Indy500
                 
                 if (car.Speed > maxSpeed) car.Speed = maxSpeed;
             }
+
+            gameMode.Update(gameTime, this);
         }
     }
 }

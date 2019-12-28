@@ -23,7 +23,7 @@ namespace Indy500
         {
             base.Initialize();
             GameSettings.Initialize();
-            activeRace = new Race(CreateSimpleTrack(), CreatePlayers());
+            activeRace = new Race(CreateSimpleTrack(), CreatePlayers(), new RaceMode(24, 40, 18, 5));
         }
 
         private Track CreateSimpleTrack(int rows = 24, int columns = 40, int islandWidth = 18, int islandHeight = 5)
