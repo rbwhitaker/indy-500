@@ -12,6 +12,7 @@
         public TrackTileType this[int row, int column]
         {
             get => tiles[row, column];
+            set => tiles[row, column] = value;
         }
 
         public int Rows => tiles.GetLength(0);
