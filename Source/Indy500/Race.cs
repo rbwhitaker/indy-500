@@ -19,9 +19,9 @@ namespace Indy500
 
         public void Update(GameTime gameTime)
         {
-            const float accelerationRate = 1f;
+            const float accelerationRate = 2f;
             const float turnRate = 1f;
-            const float maxRoadSpeed = 3f;
+            const float maxRoadSpeed = 5f;
 
             foreach(Car car in Cars)
             {
@@ -37,6 +37,12 @@ namespace Indy500
                 car.Heading += turning * turnRate * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 car.Position += new Vector2((float)Math.Cos(car.Heading), (float)Math.Sin(car.Heading)) * car.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                // Wrap around
+                if (car.Position.X > Track.Columns) car.Position = new Vector2(0, car.Position.Y);
+                if (car.Position.X < 0) car.Position = new Vector2(Track.Columns, car.Position.Y);
+                if (car.Position.Y > Track.Rows) car.Position = new Vector2(car.Position.X, 0);
+                if (car.Position.Y < 0) car.Position = new Vector2(car.Position.X, Track.Rows);
             }
         }
     }
