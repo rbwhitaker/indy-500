@@ -6,7 +6,7 @@
   <modes>1</modes>
   <maxplayers>2</maxplayers>
   <startline>
-    <start>20,14</start>
+    <start>20,17</start>
     <end>20,24</end>
   </startline>
   <waypoints>
