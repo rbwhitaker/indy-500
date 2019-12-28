@@ -52,8 +52,11 @@
     <Compile Include="GridCell.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="Indy500Game.cs" />
+    <Compile Include="IBackgroundMusicPlaybackService.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="IRenderer.cs" />
+    <Compile Include="MusicController.cs" />
+    <Compile Include="MusicManager.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Program.cs" />

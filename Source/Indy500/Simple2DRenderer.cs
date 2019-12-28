@@ -10,7 +10,8 @@ namespace Indy500
         private Texture2D rectangle;
         private float tileSize = 20;
         private SpriteBatch spriteBatch;
-        
+        private DefaultBackgroundMusicPlaybackService music;
+
         public void Draw(Race race, GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -38,6 +39,10 @@ namespace Indy500
             spriteBatch = new SpriteBatch(graphicsDevice);
             car = content.Load<Texture2D>("Car");
             rectangle = content.Load<Texture2D>("Rectangle");
+            music = new DefaultBackgroundMusicPlaybackService(content);
+            System.Random rand = new System.Random();
+            int SongNumber = rand.Next(15) + 1;
+            music.StartBackgroundMusic(SongNumber.ToString());
         }
     }
 }
