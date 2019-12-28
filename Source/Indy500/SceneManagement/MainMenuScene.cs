@@ -44,7 +44,7 @@ namespace Indy500.SceneManagement
 
         public void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().GetPressedKeys().Length > 0)
+            if (Keyboard.GetState().GetPressedKeys().Length > 0 || Mouse.GetState().LeftButton == ButtonState.Pressed || Mouse.GetState().RightButton == ButtonState.Pressed)
                 SceneManager.TransitionTo(SceneState.InGame);
         }
     }
