@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Indy500
 {
@@ -13,7 +14,8 @@ namespace Indy500
 
         private float tileSize = 20;
         private SpriteBatch spriteBatch;
-        
+        private ParticleEngine particleEngine;
+
         public void Draw(Race race, GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -22,7 +24,7 @@ namespace Indy500
             {
                 for(int column = 0; column < race.Track.Columns; column++)
                 {
-                    spriteBatch.Draw(rectangle, new Rectangle((int)(column * tileSize), (int)(row * tileSize), (int)tileSize, (int)tileSize), race.Track[row, column] == TrackTileType.Dirt ? Color.Green : Color.Gray);
+                    spriteBatch.Draw(rectangle, new Rectangle((int)(column * tileSize), (int)(row * tileSize), (int)tileSize, (int)tileSize), race.Track[row, column] == TrackTileType.Dirt ? Color.SaddleBrown : Color.Gray);
                 }
             }
 
@@ -42,6 +44,12 @@ namespace Indy500
                     spriteBatch.DrawString(mainFont, raceMode.Winner == race.Cars[0] ? "Player 1 Wins!" : "Player 2 Wins!", new Vector2(500, 300), Color.Yellow);
             }
             spriteBatch.End();
+            particleEngine.Draw(spriteBatch);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            particleEngine.Update();
         }
 
 
@@ -51,6 +59,10 @@ namespace Indy500
             car = content.Load<Texture2D>("Car");
             rectangle = content.Load<Texture2D>("Rectangle");
             mainFont = content.Load<SpriteFont>("MainFont");
+
+            List<Texture2D> textures = new List<Texture2D>();
+            textures.Add(content.Load<Texture2D>("Star"));
+            particleEngine = new ParticleEngine(textures);
         }
     }
 }
