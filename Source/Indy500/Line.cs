@@ -50,5 +50,10 @@ namespace Indy500
             _startPoint = start;
             _endPoint = end;
         }
+
+        public static implicit operator LineSegment(Line a)
+        {
+            return new LineSegment(a.StartX, a.StartY, a.EndX, a.EndY);
+        }
     }
 }
