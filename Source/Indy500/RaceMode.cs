@@ -9,16 +9,17 @@ namespace Indy500
     {
         private LineSegment finishLine;
         private LineSegment alternateLine;
-        private int laps = 3;
+        private int lapsRequired;
 
         public int ScoreForCar(Car car)
         {
             return lapsCompleted[car];
         }
-        public RaceMode(int rows, int columns, int islandWidth, int islandHeight)
+        public RaceMode(int lapsRequired, int rows, int columns, int islandWidth, int islandHeight)
         {
-            finishLine = new LineSegment(columns / 2, rows / 2, columns / 2, rows);
-            alternateLine = new LineSegment(columns / 2, 0, columns / 2, rows / 2);
+            this.lapsRequired = lapsRequired;
+            finishLine = new LineSegment(columns / 2, rows / 2 + islandHeight / 2, columns / 2, rows);
+            alternateLine = new LineSegment(columns / 2, 0, columns / 2, rows / 2 + islandHeight / 2);
         }
 
         private Dictionary<Car, LineSegment> nextTarget = new Dictionary<Car, LineSegment>();
@@ -57,9 +58,9 @@ namespace Indy500
 
         public bool IsOver()
         {
-            return lapsCompleted.Values.Any(lapsCompleted => lapsCompleted >= laps);
+            return lapsCompleted.Values.Any(lapsCompleted => lapsCompleted >= lapsRequired);
         }
 
-        public Car Winner => lapsCompleted.Where(kvp => kvp.Value >= laps).First().Key;
+        public Car Winner => lapsCompleted.Where(kvp => kvp.Value >= lapsRequired).First().Key;
     }
 }
