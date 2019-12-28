@@ -22,7 +22,7 @@ namespace Indy500
         protected override void Initialize()
         {
             base.Initialize();
-
+            GameSettings.Initialize();
             activeRace = new Race(CreateSimpleTrack(), CreatePlayers());
         }
 
