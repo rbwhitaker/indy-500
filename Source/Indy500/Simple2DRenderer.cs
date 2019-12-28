@@ -30,7 +30,7 @@ namespace Indy500
 
             foreach(Car c in race.Cars)
             {
-                spriteBatch.Draw(car, c.Position * tileSize, null, Color.Red, c.Heading, new Vector2(car.Width / 2f, car.Height / 2f), 1f / car.Width * tileSize * 2, SpriteEffects.None, 0);
+                spriteBatch.Draw(car, c.Position * tileSize, null, c == race.Cars[0] ? Color.Red : Color.Blue, c.Heading, new Vector2(car.Width / 2f, car.Height / 2f), 1f / car.Width * tileSize * 2, SpriteEffects.None, 0);
             }
             spriteBatch.End();
         }
