@@ -1,7 +1,7 @@
 [Window]
-FullScreen=True
-Width=1920
-Height=1080
+FullScreen=False
+Width=800
+Height=480
 
 [Debug]
 Enabled=True

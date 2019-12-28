@@ -23,6 +23,10 @@ namespace Indy500
         {
             base.Initialize();
             GameSettings.Initialize();
+            graphics.IsFullScreen = GameSettings.IsFullScreen;
+            graphics.PreferredBackBufferWidth = GameSettings.Width;
+            graphics.PreferredBackBufferHeight = GameSettings.Height;
+            graphics.ApplyChanges();
             activeRace = new Race(CreateSimpleTrack(), CreatePlayers(), new RaceMode(24, 40, 18, 5));
         }
 
