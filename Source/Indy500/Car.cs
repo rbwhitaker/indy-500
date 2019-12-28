@@ -13,6 +13,7 @@ namespace Indy500
         public Car(IPlayer player)
         {
             ControllingPlayer = player;
+            Position = new Vector2(20, 12);
         }
     }
 }
