@@ -10,3 +10,8 @@ Enabled=True
 Mode=Race
 Laps=5
 Map=Basic
+
+[Mapping]
+Left=Left
+Right=Right
+Accelerate=Space

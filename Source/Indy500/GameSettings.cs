@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace Indy500
         public static int Laps { get; set; }
         public static string Map { get; set; }
 
+        //Mapping
+        public static Keys LeftKey { get; set; }
+        public static Keys RightKey { get; set; }
+        public static Keys Accelerate { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -72,6 +77,17 @@ namespace Indy500
                         else if (currentConfigTag == "[Gameplay]")
                         {
                             // To be implemented
+                        }
+                        else if(currentConfigTag == "[Mapping]")
+                        {
+                            var splitCurrentLine = currentLine.Split('=');
+                            if (splitCurrentLine[0] == "Left")
+                                LeftKey = (Keys)Enum.Parse(typeof(Keys), splitCurrentLine[1]);
+                            if (splitCurrentLine[0] == "Right")
+                                RightKey = (Keys)Enum.Parse(typeof(Keys), splitCurrentLine[1]);
+                            if (splitCurrentLine[0] == "Accelerate")
+                                Accelerate = (Keys)Enum.Parse(typeof(Keys), splitCurrentLine[1]);
+
                         }
                     }
                 }

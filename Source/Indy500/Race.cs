@@ -37,11 +37,12 @@ namespace Indy500
                 // Update speed based on acceleration
                 float acceleration = MathHelper.Clamp(input.AccelerationAmount, 0, 1);
                 car.Speed += acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds * accelerationRate;
+                car.Speed *= (float)car.MaxSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds * acceleration;
+                //if (car.Speed > maxRoadSpeed) car.Speed = maxRoadSpeed;
 
                 // Update heading based on turning
                 float turning = MathHelper.Clamp(input.TurnAmount, -1, +1);
                 car.Heading += turning * turnRate * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                 car.Position += new Vector2((float)Math.Cos(car.Heading), (float)Math.Sin(car.Heading)) * car.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 // Wrap around

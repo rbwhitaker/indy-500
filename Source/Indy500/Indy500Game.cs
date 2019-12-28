@@ -55,7 +55,7 @@ namespace Indy500
         {
             return new List<Car>
             {
-                new Car(new DoNothingPlayer()),
+                new Car(new ControlledPlayer()),
                 new Car(new DoNothingPlayer())
             };
         }
@@ -65,7 +65,6 @@ namespace Indy500
             spriteBatch = new SpriteBatch(GraphicsDevice);
             renderer = new Simple2DRenderer();
             renderer.LoadContent(GraphicsDevice, Content);
-
         }
 
         protected override void UnloadContent()

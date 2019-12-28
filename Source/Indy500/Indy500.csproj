@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
+    <Compile Include="ControlledPlayer.cs" />
     <Compile Include="CollisionDetection.cs" />
     <Compile Include="DoNothingPlayer.cs" />
     <Compile Include="GridCell.cs" />
