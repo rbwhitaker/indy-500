@@ -49,7 +49,6 @@
     <Compile Include="CollisionDetection.cs" />
     <Compile Include="DoNothingPlayer.cs" />
     <Compile Include="GridCell.cs" />
-    <Compile Include="DoNothingPlayer.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="Indy500Game.cs" />
     <Compile Include="IPlayer.cs" />
