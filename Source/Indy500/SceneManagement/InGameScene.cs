@@ -125,6 +125,8 @@ namespace Indy500.SceneManagement
         {
             renderer.Draw(activeRace, gameTime);
         }
-
+        public void Reset()
+        {
+        }
     }
 }

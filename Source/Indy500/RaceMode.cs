@@ -17,6 +17,7 @@ namespace Indy500
 
         public int ScoreForCar(Car car)
         {
+            if (!lapsCompleted.ContainsKey(car)) return 0;
             return lapsCompleted[car];
         }
         public RaceMode(int lapsRequired, LineSegment finishLine, IEnumerable<LineSegment> waypoints)

@@ -13,6 +13,7 @@ namespace Indy500
         private List<IScene> allScenes;
         private MainMenuScene mainMenuScene;
         private InGameScene inGameScene;
+        private CreditsScene creditsScene;
         private SceneManager sceneManager;
         
         public Indy500Game()
@@ -28,12 +29,15 @@ namespace Indy500
             sceneManager = new SceneManager();
             inGameScene = new InGameScene();
             mainMenuScene = new MainMenuScene(sceneManager);
+            creditsScene = new CreditsScene(sceneManager);
 
             allScenes = new List<IScene>();
             allScenes.Add(mainMenuScene);
             allScenes.Add(inGameScene);
+            allScenes.Add(creditsScene);
             sceneManager.AddScene(SceneState.MainMenu, mainMenuScene);
             sceneManager.AddScene(SceneState.InGame, inGameScene);
+            sceneManager.AddScene(SceneState.Credits, creditsScene);
             sceneManager.TransitionTo(SceneState.MainMenu);
 
             graphics.IsFullScreen = GameSettings.IsFullScreen;

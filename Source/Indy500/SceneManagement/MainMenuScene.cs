@@ -52,8 +52,8 @@ namespace Indy500.SceneManagement
             if (currentState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
             {
                 if(GetSelectedMenuItem() == GetMenuItems()[0]) SceneManager.TransitionTo(SceneState.InGame);
+                if(GetSelectedMenuItem() == GetMenuItems()[1]) SceneManager.TransitionTo(SceneState.Credits);
             }
-
 
             int increment = 0;
             if (currentState.IsKeyDown(Keys.Down) && previousKeyboardState.IsKeyUp(Keys.Down))
@@ -82,6 +82,10 @@ namespace Indy500.SceneManagement
         {
             var menuItems = GetMenuItems();
             return menuItems.FirstOrDefault(mi => mi.Active) ?? menuItems.First();
+        }
+        public void Reset()
+        {
+            previousKeyboardState = new KeyboardState();
         }
     }
 }

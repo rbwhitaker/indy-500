@@ -12,7 +12,6 @@ namespace Indy500.SceneManagement
         public void TransitionTo(SceneState sceneState)
         {
             currentState = sceneState;
-            ActiveScene.Update(new Microsoft.Xna.Framework.GameTime());
         }
 
         public void AddScene(SceneState state, IScene scene)

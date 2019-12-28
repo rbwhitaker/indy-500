@@ -69,6 +69,7 @@
     <Compile Include="Race.cs" />
     <Compile Include="RaceMode.cs" />
     <Compile Include="SceneManagement\InGameScene.cs" />
+    <Compile Include="SceneManagement\CreditsScene.cs" />
     <Compile Include="SceneManagement\MainMenuScene.cs" />
     <Compile Include="SceneManagement\Scene.cs" />
     <Compile Include="SceneManagement\SceneManager.cs" />

@@ -3,6 +3,7 @@
     public enum SceneState
     {
         MainMenu,
-        InGame
+        InGame,
+        Credits
     }
 }
