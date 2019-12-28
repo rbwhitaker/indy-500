@@ -47,7 +47,7 @@ namespace Indy500
             particleEngine.Draw(spriteBatch);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             particleEngine.Update();
         }
