@@ -12,8 +12,8 @@ namespace Indy500
     {
         // Window
         public static bool IsFullScreen { get; private set; }
-        public static int Width { get; private set; }
-        public static int Height { get; private set; }
+        public static int Width { get; set; }
+        public static int Height { get; set; }
 
         //Debug
         public static bool Debug { get; private set; }
@@ -33,6 +33,29 @@ namespace Indy500
         public static void Initialize()
         {
             ParseConfigFile();
+        }
+
+        public static void SaveConfigFile()
+        {
+            string output = "";
+            output += "[Window]\r\n";
+            output += $"FullScreen={IsFullScreen}\r\n";
+            output += $"Width={Width}\r\n";
+            output += $"Height={Height}\r\n";
+            output += "\r\n";
+            output += $"[Debug]\r\n";
+            output += $"Enabled={Debug}\r\n";
+            output += "\r\n";
+            output += $"[Gameplay]\r\n";
+            output += $"Mode={Mode}\r\n";
+            output += $"Laps={Laps}\r\n";
+            output += $"Map={Map}\r\n";
+            output += "\r\n";
+            output += $"[Mapping]\r\n";
+            output += $"Left={LeftKey}\r\n";
+            output += $"Right={RightKey}\r\n";
+            output += $"Accelerate={Accelerate}\r\n";
+            File.WriteAllText("config.txt", output);
         }
         
         private static void ParseConfigFile()

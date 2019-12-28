@@ -37,6 +37,13 @@
 /processorParam:TextureFormat=Color
 /build:Rectangle.png
 
+#begin MainFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:MainFont.spritefont
+
 #begin Star.png
 /importer:TextureImporter
 /processor:TextureProcessor

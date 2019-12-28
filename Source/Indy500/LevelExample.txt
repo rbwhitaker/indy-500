@@ -1,0 +1,29 @@
+﻿
+[metadata]
+<level>
+  <title>Level 01</title>
+  <size>10x10</size>
+  <modes>1</modes>
+  <maxplayers>2</maxplayers>
+  <startline>
+    <start>2,5</start>
+    <end>2,10</end>
+  </startline>
+  <waypoints>
+    <start>0,0</start>
+    <end>0,0</end>
+  </waypoints>
+</level>
+
+[map]
+; Where each number is a tileID (or the tile's value in the enum, depending on whether or not we have tiles with their own attributes yet)
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
+0000000000
