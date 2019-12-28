@@ -24,6 +24,7 @@ namespace Indy500.SceneManagement
             spriteBatch = new SpriteBatch(graphicsDevice);
 
             uiRoot = new StackPanel();
+            uiRoot.Bounds = new Rectangle(0, 0, GameSettings.Width, GameSettings.Height);
             uiRoot.AddChild(new Placeholder(50, 0));
             uiRoot.AddChild(new Image(content.Load<Texture2D>("Logo")));
             uiRoot.AddChild(new Placeholder(30, 0));

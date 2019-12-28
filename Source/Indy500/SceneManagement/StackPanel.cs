@@ -34,7 +34,7 @@ namespace Indy500.SceneManagement
             var currentHeight = Children.Sum(c => c.DesiredSize.Y);
             base.AddChild(control);
 
-            control.Bounds = new Rectangle(this.Bounds.X, (int)currentHeight, (int)control.DesiredSize.X, (int)control.DesiredSize.Y); 
+            control.Bounds = new Rectangle(Bounds.X + (Bounds.Width - (int)control.DesiredSize.X) / 2, (int)currentHeight, (int)control.DesiredSize.X, (int)control.DesiredSize.Y); 
         }
 
         public override void Draw(SpriteBatch spriteBatch)
