@@ -16,8 +16,9 @@ namespace Indy500
         public Car(IPlayer player)
         {
             ControllingPlayer = player;
-            Position = new Vector2(20, 12);
+            Position = new Vector2(20, 18);
             Size = new Vector2(2, 2);
+            Heading = MathHelper.Pi;
         }
     }
 }
