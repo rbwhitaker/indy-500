@@ -69,7 +69,11 @@
     <Compile Include="Race.cs" />
     <Compile Include="RaceMode.cs" />
     <Compile Include="SceneManagement\InGameScene.cs" />
+    <Compile Include="SceneManagement\MainMenuScene.cs" />
     <Compile Include="SceneManagement\Scene.cs" />
+    <Compile Include="SceneManagement\SceneManager.cs" />
+    <Compile Include="SceneManagement\StackPanel.cs" />
+    <Compile Include="SceneState.cs" />
     <Compile Include="Simple2DRenderer.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Line.cs" />
