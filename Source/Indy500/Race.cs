@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Indy500
 {
-    public class Race
+    public partial class Race
     {
         public Track Track { get; }
 
@@ -22,6 +22,7 @@ namespace Indy500
             const float accelerationRate = 2f;
             const float turnRate = 1f;
             const float maxRoadSpeed = 5f;
+            const float maxDirtSpeed = maxRoadSpeed / 10;
 
             foreach(Car car in Cars)
             {
@@ -30,7 +31,6 @@ namespace Indy500
                 // Update speed based on acceleration
                 float acceleration = MathHelper.Clamp(input.AccelerationAmount, 0, 1);
                 car.Speed += acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds * accelerationRate;
-                if (car.Speed > maxRoadSpeed) car.Speed = maxRoadSpeed;
 
                 // Update heading based on turning
                 float turning = MathHelper.Clamp(input.TurnAmount, -1, +1);
@@ -43,6 +43,12 @@ namespace Indy500
                 if (car.Position.X < 0) car.Position = new Vector2(Track.Columns, car.Position.Y);
                 if (car.Position.Y > Track.Rows) car.Position = new Vector2(car.Position.X, 0);
                 if (car.Position.Y < 0) car.Position = new Vector2(car.Position.X, Track.Rows);
+
+                Polygon boundary = CollisionDetection.GetBoundaryFor(car);
+                var typesIntersected = CollisionDetection.IntersectedCells(boundary).Select(c => Track[c.Row, c.Column]).Distinct();
+                
+                if (car.Speed > maxRoadSpeed) car.Speed = maxRoadSpeed;
+                if (car.Speed > maxDirtSpeed && typesIntersected.Contains(TrackTileType.Dirt)) car.Speed = maxDirtSpeed;
             }
         }
     }
