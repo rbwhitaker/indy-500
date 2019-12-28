@@ -1,0 +1,12 @@
+[Window]
+FullScreen=True
+Width=1920
+Height=1080
+
+[Debug]
+Enabled=True
+
+[Gameplay]
+Mode=Race
+Laps=5
+Map=Basic
