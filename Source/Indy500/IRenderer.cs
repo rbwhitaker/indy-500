@@ -12,6 +12,7 @@ namespace Indy500
     public interface IRenderer
     {
         void LoadContent(GraphicsDevice graphicsDevice, ContentManager content);
+        void Update(GameTime gameTime);
         void Draw(Race race, GameTime gameTime);
     }
 }

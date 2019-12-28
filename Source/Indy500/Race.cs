@@ -11,7 +11,8 @@ namespace Indy500
 
         public IReadOnlyList<Car> Cars { get; }
 
-        public Race(Track track, IEnumerable<Car> cars)
+
+        public Race(Track track,  IEnumerable<Car> cars)
         {
             Track = track;
             Cars = cars.ToList();
@@ -54,6 +55,7 @@ namespace Indy500
                 
                 if (car.Speed > maxSpeed) car.Speed = maxSpeed;
             }
+
         }
     }
 }

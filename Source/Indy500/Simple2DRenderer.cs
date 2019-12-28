@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Indy500
 {
@@ -10,7 +11,8 @@ namespace Indy500
         private Texture2D rectangle;
         private float tileSize = 20;
         private SpriteBatch spriteBatch;
-        
+        private ParticleEngine particleEngine;
+
         public void Draw(Race race, GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -31,6 +33,12 @@ namespace Indy500
                 spriteBatch.Draw(car, c.Position * tileSize, null, carColor, c.Heading, centerPoint, scale, SpriteEffects.None, 0);
             }
             spriteBatch.End();
+            particleEngine.Draw(spriteBatch);
+        }
+
+        public void Update()
+        {
+            particleEngine.Update();
         }
 
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager content)
@@ -38,6 +46,10 @@ namespace Indy500
             spriteBatch = new SpriteBatch(graphicsDevice);
             car = content.Load<Texture2D>("Car");
             rectangle = content.Load<Texture2D>("Rectangle");
+
+            List<Texture2D> textures = new List<Texture2D>();
+            textures.Add(content.Load<Texture2D>("Star"));
+            particleEngine = new ParticleEngine(textures);
         }
     }
 }
