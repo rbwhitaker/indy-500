@@ -17,12 +17,16 @@ namespace Indy500
             Cars = cars.ToList();
         }
 
+        private Dictionary<TrackTileType, float> speedsByType = new Dictionary<TrackTileType, float>
+        {
+            [TrackTileType.Road] = 5f,
+            [TrackTileType.Dirt] = 0.5f
+        };
+
         public void Update(GameTime gameTime)
         {
             const float accelerationRate = 2f;
             const float turnRate = 1f;
-            const float maxRoadSpeed = 5f;
-            const float maxDirtSpeed = maxRoadSpeed / 10;
 
             foreach(Car car in Cars)
             {
@@ -45,10 +49,9 @@ namespace Indy500
                 if (car.Position.Y < 0) car.Position = new Vector2(car.Position.X, Track.Rows);
 
                 Polygon boundary = CollisionDetection.GetBoundaryFor(car);
-                var typesIntersected = CollisionDetection.IntersectedCells(boundary).Select(c => Track[c.Row, c.Column]).Distinct();
+                var maxSpeed = CollisionDetection.IntersectedCells(boundary).Select(c => Track[c.Row, c.Column]).Distinct().Select(t => speedsByType[t]).Min();
                 
-                if (car.Speed > maxRoadSpeed) car.Speed = maxRoadSpeed;
-                if (car.Speed > maxDirtSpeed && typesIntersected.Contains(TrackTileType.Dirt)) car.Speed = maxDirtSpeed;
+                if (car.Speed > maxSpeed) car.Speed = maxSpeed;
             }
         }
     }
