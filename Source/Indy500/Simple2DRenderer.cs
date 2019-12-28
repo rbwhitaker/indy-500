@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -30,7 +25,10 @@ namespace Indy500
 
             foreach(Car c in race.Cars)
             {
-                spriteBatch.Draw(car, c.Position * tileSize, null, c == race.Cars[0] ? Color.Red : Color.Blue, c.Heading, new Vector2(car.Width / 2f, car.Height / 2f), 1f / car.Width * tileSize * 2, SpriteEffects.None, 0);
+                Color carColor = c == race.Cars[0] ? Color.Red : Color.Blue;
+                Vector2 centerPoint = new Vector2(car.Width / 2f, car.Height / 2f);
+                Vector2 scale = new Vector2(1f / car.Width * tileSize * c.Size.X, 1f / car.Height * tileSize * c.Size.Y);
+                spriteBatch.Draw(car, c.Position * tileSize, null, carColor, c.Heading, centerPoint, scale, SpriteEffects.None, 0);
             }
             spriteBatch.End();
         }
