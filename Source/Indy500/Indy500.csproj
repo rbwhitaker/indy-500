@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
+    <Compile Include="ControlledPlayer.cs" />
     <Compile Include="DoNothingPlayer.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="Indy500Game.cs" />
