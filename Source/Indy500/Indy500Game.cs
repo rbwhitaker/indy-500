@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Indy500
@@ -10,6 +11,7 @@ namespace Indy500
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Race activeRace;
+        private IRenderer renderer;
         
         public Indy500Game()
         {
@@ -57,6 +59,9 @@ namespace Indy500
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            renderer = new Simple2DRenderer();
+            renderer.LoadContent(GraphicsDevice, Content);
+
         }
 
         protected override void UnloadContent()
@@ -76,6 +81,8 @@ namespace Indy500
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            renderer.Draw(activeRace, gameTime);
 
             base.Draw(gameTime);
         }

@@ -49,10 +49,12 @@
     <Compile Include="DoNothingPlayer.cs" />
     <Compile Include="Indy500Game.cs" />
     <Compile Include="IPlayer.cs" />
+    <Compile Include="IRenderer.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Race.cs" />
+    <Compile Include="Simple2DRenderer.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="TrackTileType.cs" />
   </ItemGroup>
