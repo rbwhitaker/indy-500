@@ -53,6 +53,7 @@
     <Compile Include="GameModes.cs" />
     <Compile Include="GridCell.cs" />
     <Compile Include="GameSettings.cs" />
+    <Compile Include="IBackgroundMusicPlaybackService.cs" />
     <Compile Include="IGameMode.cs" />
     <Compile Include="Indy500Game.cs" />
     <Compile Include="IPlayer.cs" />
@@ -60,6 +61,8 @@
     <Compile Include="Level.cs" />
     <Compile Include="LevelParseException.cs" />
     <Compile Include="LineSegment.cs" />
+    <Compile Include="MusicController.cs" />
+    <Compile Include="MusicManager.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="ParticleEngine.cs" />
     <Compile Include="PlayerInput.cs" />
