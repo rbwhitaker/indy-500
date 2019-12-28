@@ -26,12 +26,11 @@ namespace Indy500
             activeRace = new Race(CreateSimpleTrack(), CreatePlayers());
         }
 
-        private Track CreateSimpleTrack()
+        private Track CreateSimpleTrack(int rows = 24, int columns = 40, int islandWidth = 18, int islandHeight = 5)
         {
-            int rows = 24;
-            int columns = 40;
             Track track = new Track(rows, columns);
 
+            // Set up the outside edge.
             for (int x = 0; x < columns; x++)
             {
                 track[0, x] = TrackTileType.Dirt;
@@ -43,6 +42,11 @@ namespace Indy500
                 track[y, 0] = TrackTileType.Dirt;
                 track[y, columns - 1] = TrackTileType.Dirt;
             }
+
+            // Set up the "island" in the middle
+            for (int x = (columns - islandWidth) / 2; x < (columns + islandWidth) / 2; x++)
+                for (int y = (rows - islandHeight) / 2; y < (rows + islandHeight) / 2; y++)
+                    track[y, x] = TrackTileType.Dirt;
 
             return track;
         }
