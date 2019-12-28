@@ -99,4 +99,34 @@ namespace Indy500.SceneManagement
             spriteBatch.Draw(Texture, Bounds, Color.White);
         }
     }
+
+    public class MenuItem : Control // Not super flexible right now...
+    {
+        private Texture2D leftMarker;
+        private Texture2D rightMarker;
+        private string text;
+        private SpriteFont font;
+
+        public bool Active { get; set; }
+        public Color ActiveColor { get; set; }
+        public Color InactiveColor { get; set; }
+
+        public MenuItem(Texture2D leftMarker, Texture2D rightMarker, SpriteFont font, string text)
+        {
+            this.leftMarker = leftMarker;
+            this.rightMarker = rightMarker;
+            this.font = font;
+            this.text = text;
+        }
+        public override Rectangle Bounds { get; set; }
+
+        public override Vector2 DesiredSize => new Vector2(leftMarker.Width + 40 * 2 + rightMarker.Width + font.MeasureString(text).X, Math.Max(Math.Max(leftMarker.Height, rightMarker.Height), font.MeasureString(text).Y));
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if(Active)spriteBatch.Draw(leftMarker, new Rectangle(Bounds.X, Bounds.Y + 10, leftMarker.Width, leftMarker.Height), Active ? ActiveColor : InactiveColor);
+            spriteBatch.DrawString(font, text, new Vector2(Bounds.X + 40 + leftMarker.Width, Bounds.Y + Bounds.Height / 2 - DesiredSize.Y / 2), Active ? ActiveColor : InactiveColor);
+            if(Active)spriteBatch.Draw(rightMarker, new Rectangle(Bounds.X + Bounds.Width - rightMarker.Width, Bounds.Y + 10, rightMarker.Width, rightMarker.Height), Active ? ActiveColor : InactiveColor);
+        }
+    }
 }
