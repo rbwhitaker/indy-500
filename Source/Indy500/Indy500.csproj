@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,8 @@
     <AssemblyName>Indy500</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -46,16 +47,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
-    <Compile Include="ControlledPlayer.cs" />
     <Compile Include="CollisionDetection.cs" />
     <Compile Include="DoNothingPlayer.cs" />
+    <Compile Include="GameModes.cs" />
     <Compile Include="GridCell.cs" />
     <Compile Include="GameSettings.cs" />
-    <Compile Include="IGameMode.cs" />
     <Compile Include="Indy500Game.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="IRenderer.cs" />
-    <Compile Include="LineSegment.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="LevelParseException.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Program.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="SceneManagement\Scene.cs" />
     <Compile Include="Simple2DRenderer.cs" />
     <Compile Include="Track.cs" />
+    <Compile Include="Line.cs" />
     <Compile Include="TrackTileType.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,10 +127,14 @@
       <Link>MonoGame.Framework.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="app.config" />
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LevelExample.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
