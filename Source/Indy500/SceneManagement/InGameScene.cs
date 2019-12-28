@@ -10,14 +10,16 @@ namespace Indy500.SceneManagement
         private Race activeRace;
         private readonly IRenderer renderer;
 
+        private MessageDispatcher messageDispatcher = new MessageDispatcher();
+
         public InGameScene()
         {
-            renderer = new Simple2DRenderer();
+            renderer = new Simple2DRenderer(messageDispatcher);
         }
 
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager content)
         {
-            activeRace = new Race(CreateSimpleTrack(), CreatePlayers(), new RaceMode(3, 24, 40, 18, 5));
+            activeRace = new Race(CreateSimpleTrack(), CreatePlayers(), new RaceMode(3, 24, 40, 18, 5), messageDispatcher);
             renderer.LoadContent(graphicsDevice, content);
         }
 
@@ -59,6 +61,7 @@ namespace Indy500.SceneManagement
         public void Update(GameTime gameTime)
         {
             activeRace.Update(gameTime);
+            renderer.Update(gameTime);
         }
 
         public void Draw(GameTime gameTime)

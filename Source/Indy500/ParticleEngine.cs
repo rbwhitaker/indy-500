@@ -41,13 +41,34 @@ namespace Indy500
             return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);
         }
 
+        public void GenerateCrashParticles(int howMany)
+        {
+            for(int i = 0; i < howMany; i++)
+            {
+                Texture2D texture = textures[random.Next(textures.Count)];
+                Vector2 position = EmitterLocation;
+                Vector2 velocity = new Vector2(
+                    1f * (float)(random.NextDouble() * 2 - 1),
+                    1f * (float)(random.NextDouble() * 2 - 1));
+
+                float angle = 0;
+                float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
+                Color color = new Color(
+                    (float)random.NextDouble(),
+                    (float)random.NextDouble(),
+                    (float)random.NextDouble());
+                float size = (float)random.NextDouble();
+                int ttl = 20 + random.Next(40);
+
+
+                particles.Add(new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl));
+            }
+        }
+
         public void Update()
         {
-            int total = 10;
-            for (int i = 0; i < total; i++)
-                particles.Add(GenerateNewParticle());
 
-            for(int particle = 0; particle < particles.Count; particle++)
+            for (int particle = 0; particle < particles.Count; particle++)
             {
                 particles[particle].Update();
                 if(particles[particle].TTL <= 0)

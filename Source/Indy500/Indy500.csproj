@@ -60,6 +60,8 @@
     <Compile Include="Level.cs" />
     <Compile Include="LevelParseException.cs" />
     <Compile Include="LineSegment.cs" />
+    <Compile Include="MessageArgs.cs" />
+    <Compile Include="MessageDispatcher.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="ParticleEngine.cs" />
     <Compile Include="PlayerInput.cs" />

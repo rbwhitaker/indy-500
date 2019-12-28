@@ -12,11 +12,14 @@ namespace Indy500
         public IReadOnlyList<Car> Cars { get; }
         public IGameMode Mode { get; }
 
-        public Race(Track track, IEnumerable<Car> cars, IGameMode gameMode)
+        private MessageDispatcher messageDispatcher;
+
+        public Race(Track track, IEnumerable<Car> cars, IGameMode gameMode, MessageDispatcher messageDispatcher)
         {
             Track = track;
             Mode = gameMode;
             Cars = cars.ToList();
+            this.messageDispatcher = messageDispatcher;
         }
 
         private Dictionary<TrackTileType, float> speedsByType = new Dictionary<TrackTileType, float>
@@ -57,9 +60,13 @@ namespace Indy500
                 var maxSpeed = CollisionDetection.IntersectedCells(boundary).Select(c => Track[c.Row, c.Column]).Distinct().Select(t => speedsByType[t]).Min();
                 
                 if (car.Speed > maxSpeed) car.Speed = maxSpeed;
+
+                if(maxSpeed == 0.5f && car.ControllingPlayer is ControlledPlayer)
+                    messageDispatcher.InvokeMessage(MessageType.Collision, car, new MessageArgs());
             }
 
             Mode.Update(gameTime, this);
         }
+
     }
 }

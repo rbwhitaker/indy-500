@@ -15,9 +15,16 @@ namespace Indy500
         private float tileSize = 20;
         private SpriteBatch spriteBatch;
         private ParticleEngine particleEngine;
+        private Race race;
 
+        MessageDispatcher messageDispatcher;
+        public Simple2DRenderer(MessageDispatcher messageDispatcher)
+        {
+            this.messageDispatcher = messageDispatcher;
+        }
         public void Draw(Race race, GameTime gameTime)
         {
+            this.race = race;
             spriteBatch.Begin();
 
             for(int row = 0; row < race.Track.Rows; row++)
@@ -50,8 +57,16 @@ namespace Indy500
         public void Update(GameTime gameTime)
         {
             particleEngine.Update();
-        }
 
+            if (race != null)
+                foreach (Car c in race.Cars)
+                {
+                    if (c.ControllingPlayer is ControlledPlayer)
+                    {
+                        particleEngine.EmitterLocation = c.Position * tileSize;
+                    }
+                }
+        }
 
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -63,6 +78,8 @@ namespace Indy500
             List<Texture2D> textures = new List<Texture2D>();
             textures.Add(content.Load<Texture2D>("Star"));
             particleEngine = new ParticleEngine(textures);
+            messageDispatcher.RegisterMessage(MessageType.Collision, delegate (object sender, MessageArgs e) { particleEngine.GenerateCrashParticles(1); });
         }
+
     }
 }
