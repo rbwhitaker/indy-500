@@ -23,7 +23,7 @@ namespace Indy500.SceneManagement
             Level level = Level.Parse(System.IO.File.ReadAllText("LevelExample.txt"));
 
             //activeRace = new Race(CreateSimpleTrack(), CreatePlayers(), new RaceMode(3, 24, 40, 18, 5));
-            activeRace = new Race(CreateTrackFromLevel(level), CreatePlayersFromLevel(level), new RaceMode(3, level.StartLine, level.AIWaypoints.Select(l => (LineSegment)l)));
+            activeRace = new Race(CreateTrackFromLevel(level), CreatePlayersFromLevel(level), new RaceMode(3, level.StartLine, level.AIWaypoints.Select(l => (LineSegment)l)), messageDispatcher);
 
             renderer.LoadContent(graphicsDevice, content);
         }
