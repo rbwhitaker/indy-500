@@ -27,7 +27,16 @@ namespace Indy500
             graphics.PreferredBackBufferWidth = GameSettings.Width;
             graphics.PreferredBackBufferHeight = GameSettings.Height;
             graphics.ApplyChanges();
+            Window.AllowUserResizing = true;
+            Window.ClientSizeChanged += WindowSizeChanged;
             activeRace = new Race(CreateSimpleTrack(), CreatePlayers(), new RaceMode(3, 24, 40, 18, 5));
+        }
+
+        private void WindowSizeChanged(object sender, EventArgs e)
+        {
+            GameSettings.Width = Window.ClientBounds.Width;
+            GameSettings.Height = Window.ClientBounds.Height;
+            GameSettings.SaveConfigFile();
         }
 
         private Track CreateSimpleTrack(int rows = 24, int columns = 40, int islandWidth = 18, int islandHeight = 5)
