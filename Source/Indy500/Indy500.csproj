@@ -55,6 +55,7 @@
     <Compile Include="Indy500Game.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="IRenderer.cs" />
+    <Compile Include="LineSegment.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Program.cs" />
