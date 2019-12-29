@@ -76,6 +76,7 @@
     <Compile Include="SceneManagement\InGameScene.cs" />
     <Compile Include="SceneManagement\CreditsScene.cs" />
     <Compile Include="SceneManagement\MainMenuScene.cs" />
+    <Compile Include="SceneManagement\RaceBuilder.cs" />
     <Compile Include="SceneManagement\Scene.cs" />
     <Compile Include="SceneManagement\SceneManager.cs" />
     <Compile Include="SceneManagement\StackPanel.cs" />
