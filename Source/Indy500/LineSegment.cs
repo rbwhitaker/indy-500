@@ -4,8 +4,9 @@ namespace Indy500
 {
     public class LineSegment
     {
-        Vector2 Start { get; }
-        Vector2 End { get; }
+        public Vector2 Start { get; }
+        public Vector2 End { get; }
+        public Vector2 Midpoint => (Start + End) / 2;
 
         public LineSegment(Vector2 start, Vector2 end)
         {

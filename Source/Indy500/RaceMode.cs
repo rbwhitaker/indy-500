@@ -13,6 +13,8 @@ namespace Indy500
         private IReadOnlyList<LineSegment> alternateLines;
         private int lapsRequired;
 
+        public IReadOnlyList<LineSegment> WaypointGates => alternateLines;
+
         private Dictionary<Car, Dictionary<LineSegment, int>> _traversals;
 
         public int ScoreForCar(Car car)
@@ -20,6 +22,7 @@ namespace Indy500
             if (!lapsCompleted.ContainsKey(car)) return 0;
             return lapsCompleted[car];
         }
+
         public RaceMode(int lapsRequired, LineSegment finishLine, IEnumerable<LineSegment> waypoints)
         {
             this.lapsRequired = lapsRequired;

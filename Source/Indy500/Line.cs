@@ -32,7 +32,7 @@ namespace Indy500
         public int StartY
         { get => _startPoint.Y; set => _startPoint.Y = value; }
         public int EndX
-        { get => _startPoint.X; set => _startPoint.X = value; }
+        { get => _endPoint.X; set => _endPoint.X = value; }
         public int EndY
         { get => _endPoint.Y; set => _endPoint.Y = value; }
 

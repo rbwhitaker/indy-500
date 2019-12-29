@@ -45,11 +45,14 @@ namespace Indy500
 
             if(race.Mode is RaceMode raceMode)
             {
+                //foreach (var waypointLine in raceMode.WaypointGates)
+                    //spriteBatch.Draw(rectangle, new Rectangle((int)(waypointLine.Midpoint.X * tileSize - 2), (int)(waypointLine.Midpoint.Y * tileSize - 2), 4, 4), Color.Pink);
                 spriteBatch.DrawString(mainFont, raceMode.ScoreForCar(race.Cars[0]).ToString(), new Vector2(0, 0), Color.White);
                 spriteBatch.DrawString(mainFont, raceMode.ScoreForCar(race.Cars[1]).ToString(), new Vector2(500, 0), Color.White);
                 if (raceMode.IsOver())
                     spriteBatch.DrawString(mainFont, raceMode.Winner == race.Cars[0] ? "Player 1 Wins!" : "Player 2 Wins!", new Vector2(500, 300), Color.Yellow);
             }
+
             spriteBatch.End();
             particleEngine.Draw(spriteBatch);
         }

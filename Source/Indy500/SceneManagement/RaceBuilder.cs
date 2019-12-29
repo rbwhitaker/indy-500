@@ -65,7 +65,7 @@ namespace Indy500.SceneManagement
 
             for (int i = 1; i < level.MaxPlayers; i++)
             {
-                var car = new Car(new DoNothingPlayer());
+                var car = new Car(new RBsAIPlayer());
                 car.Position = new Vector2(level.StartLine.StartX + xOffset, level.StartLine.StartY + yOffset);
                 cars.Add(car);
                 IncrementOffsets(car);
