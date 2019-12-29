@@ -17,8 +17,7 @@ namespace Indy500
                 Vector2 relativeToTarget = raceMode.WaypointGates[waypointIndex].Midpoint - carToControl.Position;
                 relativeToTarget = Vector2.Transform(relativeToTarget, Matrix.CreateRotationZ(-carToControl.Heading));
                 double angle = Math.Atan2(-relativeToTarget.Y, relativeToTarget.X);
-                Console.WriteLine(angle);
-                if (relativeToTarget.LengthSquared() < 0.1f)
+                if (relativeToTarget.LengthSquared() < 0.3f)
                     waypointIndex = (waypointIndex + 1) % raceMode.WaypointGates.Count;
                 return new PlayerInput(1f, ComputeTurnRate(angle));
 

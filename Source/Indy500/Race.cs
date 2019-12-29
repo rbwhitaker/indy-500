@@ -24,15 +24,15 @@ namespace Indy500
 
         private Dictionary<TrackTileType, float> speedsByType = new Dictionary<TrackTileType, float>
         {
-            [TrackTileType.Road] = 5f,
-            [TrackTileType.Dirt] = 0.5f
+            [TrackTileType.Road] = 10f,
+            [TrackTileType.Dirt] = 1f
         };
 
         public void Update(GameTime gameTime)
         {
             if (Mode.IsOver()) return;
 
-            const float accelerationRate = 2f;
+            const float accelerationRate = 10f;
             const float turnRate = 2f;
 
             foreach(Car car in Cars)
@@ -42,8 +42,8 @@ namespace Indy500
                 // Update speed based on acceleration
                 float acceleration = MathHelper.Clamp(input.AccelerationAmount, 0, 1);
                 car.Speed += acceleration * (float)gameTime.ElapsedGameTime.TotalSeconds * accelerationRate;
-                car.Speed *= (float)car.MaxSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds * acceleration;
-                //if (car.Speed > maxRoadSpeed) car.Speed = maxRoadSpeed;
+                //car.Speed *= (float)car.MaxSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds * acceleration;
+                car.Speed *= 1 - (0.5f * (float)gameTime.ElapsedGameTime.TotalSeconds);
 
                 // Update heading based on turning
                 float turning = MathHelper.Clamp(input.TurnAmount, -1, +1);
