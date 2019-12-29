@@ -18,7 +18,8 @@ namespace Indy500
         private ParticleEngine particleEngine;
         private Race race;
 
-        MessageDispatcher messageDispatcher;
+        private MessageDispatcher messageDispatcher;
+        private DefaultBackgroundMusicPlaybackService music;
 
         private Dictionary<int, Color> playerColors = new Dictionary<int, Color>
         {
@@ -109,6 +110,11 @@ namespace Indy500
             textures.Add(content.Load<Texture2D>("Circle"));
             particleEngine = new ParticleEngine(textures);
             messageDispatcher.RegisterMessage(MessageType.Collision, delegate (object sender, MessageArgs e) { particleEngine.GenerateCrashParticles(1); });
+            
+            music = new DefaultBackgroundMusicPlaybackService(content);
+            Random rand = new System.Random();
+            int SongNumber = rand.Next(15) + 1;
+            music.StartBackgroundMusic(SongNumber.ToString());
         }
 
     }

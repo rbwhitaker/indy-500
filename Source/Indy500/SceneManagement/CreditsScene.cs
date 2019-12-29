@@ -28,14 +28,22 @@ namespace Indy500.SceneManagement
             uiRoot = new StackPanel();
             uiRoot.Bounds = new Rectangle(0, 0, GameSettings.Width, GameSettings.Height);
             uiRoot.AddChild(new Placeholder(50, 0));
-            uiRoot.AddChild(new Image(content.Load<Texture2D>("Logo")));
-            uiRoot.AddChild(new Placeholder(30, 0));
+            //uiRoot.AddChild(new Image(content.Load<Texture2D>("Logo")));
+            //uiRoot.AddChild(new Placeholder(30, 0));
             uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("TitleFont"), "Credits".ToUpper()) { Color = Color.Yellow });
-            uiRoot.AddChild(new Placeholder(30, 0));
+            uiRoot.AddChild(new Placeholder(10, 0));
             uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "Edgar Cocco    https://github.com/edgarcocco"));
             uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "       Joel    https://github.com/moolicc   "));
             uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), " PiscesMike    https://github.com/PiscesMike"));
             uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "RB Whitaker    https://github.com/rbwhitaker"));
+            uiRoot.AddChild(new Placeholder(10, 0));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "Music from https://filmmusic.io/"));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "\"Android Sock Hop\", \"Arroz Con Pollo\", \"Captain Scurvy\", \"Deep and Dirty\""));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "\"Desert of Lost Souls\", \"Fantasia Fantasia\", \"Half Mystery\", \"Laserpack\""));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "\"Loopster\", \"Onion Capers\", \"Raving Energy\", \"Realizer\""));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "\"Rising Tide (faster)\", \"Robozo\", \"Tyrant\", \"Verano Sensual\""));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "by Kevin MacLeod (https://incompetech.com)"));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "License: CC BY (http://creativecommons.org/licenses/by/4.0/)"));
 
             uiRoot.AddChild(new Placeholder(30, 0));
             uiRoot.AddChild(new MenuItem(content.Load<Texture2D>("MenuItemLeftMarker"), content.Load<Texture2D>("MenuItemRightMarker"), content.Load<SpriteFont>("MenuItemFont"), "Back".ToUpper()) { ActiveColor = Color.White, InactiveColor = Color.DarkGray, Active = true  });
