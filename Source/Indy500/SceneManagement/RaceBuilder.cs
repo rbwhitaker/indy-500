@@ -38,7 +38,7 @@ namespace Indy500.SceneManagement
         {
             float xOffset = 0;
             float yOffset = 0;
-            float spacing = 0.1f;
+            float spacing = -0.5f;
 
             void IncrementOffsets(Car car)
             {

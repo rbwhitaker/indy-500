@@ -4,7 +4,7 @@
   <title>Example Level</title>
   <size>40x24</size>
   <modes>1</modes>
-  <maxplayers>3</maxplayers>
+  <maxplayers>4</maxplayers>
   <startline>
     <start>20,17</start>
     <end>20,24</end>
