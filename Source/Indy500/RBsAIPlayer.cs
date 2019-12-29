@@ -10,15 +10,20 @@ namespace Indy500
         }
 
         private int waypointIndex = 0;
+        private Vector2 waypointOffset = new Vector2(0, 0);
+        private static Random random = new Random();
         public PlayerInput Update(GameTime gameTime, Race race, Car carToControl)
         {
             if(race.Mode is RaceMode raceMode)
             {
-                Vector2 relativeToTarget = raceMode.WaypointGates[waypointIndex].Midpoint - carToControl.Position;
+                Vector2 relativeToTarget = raceMode.WaypointGates[waypointIndex].Midpoint + waypointOffset - carToControl.Position;
                 relativeToTarget = Vector2.Transform(relativeToTarget, Matrix.CreateRotationZ(-carToControl.Heading));
                 double angle = Math.Atan2(-relativeToTarget.Y, relativeToTarget.X);
-                if (relativeToTarget.LengthSquared() < 0.3f)
+                if (relativeToTarget.Length() < 1f)
+                {
                     waypointIndex = (waypointIndex + 1) % raceMode.WaypointGates.Count;
+                    waypointOffset = new Vector2(MathHelper.Lerp((float)random.NextDouble(), -0.5f, +0.5f), MathHelper.Lerp((float)random.NextDouble(), -0.5f, +0.5f));
+                }
                 return new PlayerInput(1f, ComputeTurnRate(angle));
 
             }

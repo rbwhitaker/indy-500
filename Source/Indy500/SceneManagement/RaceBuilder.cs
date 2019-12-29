@@ -16,7 +16,7 @@ namespace Indy500.SceneManagement
 
         public static IGameMode CreateModeFromLevel(Level level)
         {
-            return new RaceMode(3, level.StartLine, level.AIWaypoints.Select(l => (LineSegment)l));
+            return new RaceMode(5, level.StartLine, level.AIWaypoints.Select(l => (LineSegment)l));
         }
 
         public static Track CreateTrackFromLevel(Level level)
@@ -36,23 +36,24 @@ namespace Indy500.SceneManagement
 
         public static IEnumerable<Car> CreatePlayersFromLevel(Level level)
         {
-            int xOffset = 0;
-            int yOffset = 0;
+            float xOffset = 0;
+            float yOffset = 0;
+            float spacing = 0.1f;
 
             void IncrementOffsets(Car car)
             {
                 if (level.StartLine.StartX == level.StartLine.EndX)
                 {
-                    yOffset += (int)car.Size.Y + 1;
+                    yOffset += (int)car.Size.Y + spacing;
                 }
                 else if (level.StartLine.StartY == level.StartLine.EndY)
                 {
-                    xOffset += (int)car.Size.X + 1;
+                    xOffset += (int)car.Size.X + spacing;
                 }
                 else
                 {
-                    xOffset += (int)car.Size.X + 1;
-                    yOffset += (int)car.Size.Y + 1;
+                    xOffset += (int)car.Size.X + spacing;
+                    yOffset += (int)car.Size.Y + spacing;
                 }
             }
             var cars = new List<Car>();
