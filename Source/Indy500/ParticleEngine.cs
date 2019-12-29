@@ -20,27 +20,7 @@ namespace Indy500
         {
             this.textures = textures;
         }
-
-        private Particle GenerateNewParticle()
-        {
-            Texture2D texture = textures[random.Next(textures.Count)];
-            Vector2 position = EmitterLocation;
-            Vector2 velocity = new Vector2(
-                1f * (float)(random.NextDouble() * 2 - 1),
-                1f * (float)(random.NextDouble() * 2 - 1));
-
-            float angle = 0;
-            float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-            Color color = new Color(
-                (float)random.NextDouble(),
-                (float)random.NextDouble(),
-                (float)random.NextDouble());
-            float size = (float)random.NextDouble();
-            int ttl = 20 + random.Next(40);
-
-            return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);
-        }
-
+        
         public void GenerateCrashParticles(int howMany)
         {
             for(int i = 0; i < howMany; i++)
@@ -53,10 +33,11 @@ namespace Indy500
 
                 float angle = 0;
                 float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
+                float colorValue = (float)random.NextDouble();
                 Color color = new Color(
-                    (float)random.NextDouble(),
-                    (float)random.NextDouble(),
-                    (float)random.NextDouble());
+                    MathHelper.Lerp(0xD4 / 255f, 0x80 / 255f, colorValue),
+                    MathHelper.Lerp(0x55 / 255f, 0x33 / 255f, colorValue),
+                    MathHelper.Lerp(0x00 / 255f, 0x00 / 255f, colorValue));
                 float size = (float)random.NextDouble();
                 int ttl = 20 + random.Next(40);
 

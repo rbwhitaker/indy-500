@@ -34,8 +34,12 @@ namespace Indy500
                     spriteBatch.Draw(rectangle, new Rectangle((int)(column * tileSize), (int)(row * tileSize), (int)tileSize, (int)tileSize), race.Track[row, column] == TrackTileType.Dirt ? Color.SaddleBrown : Color.Gray);
                 }
             }
+            spriteBatch.End();
 
-            foreach(Car c in race.Cars)
+            particleEngine.Draw(spriteBatch);
+
+            spriteBatch.Begin();
+            foreach (Car c in race.Cars)
             {
                 Color carColor = c == race.Cars[0] ? Color.Red : Color.Blue;
                 Vector2 centerPoint = new Vector2(car.Width / 2f, car.Height / 2f);
@@ -54,7 +58,6 @@ namespace Indy500
             }
 
             spriteBatch.End();
-            particleEngine.Draw(spriteBatch);
         }
 
         public void Update(GameTime gameTime)
@@ -79,7 +82,7 @@ namespace Indy500
             mainFont = content.Load<SpriteFont>("MainFont");
 
             List<Texture2D> textures = new List<Texture2D>();
-            textures.Add(content.Load<Texture2D>("Star"));
+            textures.Add(content.Load<Texture2D>("Circle"));
             particleEngine = new ParticleEngine(textures);
             messageDispatcher.RegisterMessage(MessageType.Collision, delegate (object sender, MessageArgs e) { particleEngine.GenerateCrashParticles(1); });
         }
