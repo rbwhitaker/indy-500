@@ -16,9 +16,10 @@ namespace Indy500.SceneManagement
 
         public SceneManager SceneManager { get; }
 
-        public MainMenuScene(SceneManager sceneManager)
+        public MainMenuScene(SceneManager sceneManager, GameManager gameManager)
         {
             SceneManager = sceneManager;
+            this.gameManager = gameManager;
         }
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -46,12 +47,18 @@ namespace Indy500.SceneManagement
 
 
         private KeyboardState previousKeyboardState = new KeyboardState();
+        private readonly GameManager gameManager;
+
         public void Update(GameTime gameTime)
         {
             KeyboardState currentState = Keyboard.GetState();
             if (currentState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
             {
-                if(GetSelectedMenuItem() == GetMenuItems()[0]) SceneManager.TransitionTo(SceneState.InGame);
+                if (GetSelectedMenuItem() == GetMenuItems()[0])
+                {
+                    gameManager.MakeNewLevel();
+                    SceneManager.TransitionTo(SceneState.InGame);
+                }
                 if(GetSelectedMenuItem() == GetMenuItems()[1]) SceneManager.TransitionTo(SceneState.Credits);
             }
 

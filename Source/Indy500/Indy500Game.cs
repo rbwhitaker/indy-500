@@ -6,9 +6,30 @@ using System.Collections.Generic;
 
 namespace Indy500
 {
+    public class GameManager
+    {
+        public MessageDispatcher MessageDispatcher { get; }
+
+        public Race CurrentRace { get; private set; }
+
+        public GameManager(MessageDispatcher messageDispatcher)
+        {
+            MessageDispatcher = messageDispatcher;
+            MakeNewLevel();
+        }
+
+        public void MakeNewLevel()
+        {
+            Level level = Level.Parse(System.IO.File.ReadAllText("LevelExample.txt"));
+            CurrentRace = RaceBuilder.FromLevel(level, MessageDispatcher);
+        }
+    }
     public class Indy500Game : Game
     {
         private GraphicsDeviceManager graphics;
+
+        private GameManager gameManager;
+        private MessageDispatcher messageDispatcher;
 
         private List<IScene> allScenes;
         private MainMenuScene mainMenuScene;
@@ -20,6 +41,9 @@ namespace Indy500
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            messageDispatcher = new MessageDispatcher();
+            gameManager = new GameManager(messageDispatcher);
         }
 
         protected override void Initialize()
@@ -27,8 +51,8 @@ namespace Indy500
             GameSettings.Initialize();
 
             sceneManager = new SceneManager();
-            inGameScene = new InGameScene();
-            mainMenuScene = new MainMenuScene(sceneManager);
+            inGameScene = new InGameScene(gameManager, sceneManager);
+            mainMenuScene = new MainMenuScene(sceneManager, gameManager);
             creditsScene = new CreditsScene(sceneManager);
 
             allScenes = new List<IScene>();

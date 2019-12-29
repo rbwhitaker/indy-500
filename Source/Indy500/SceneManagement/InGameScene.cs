@@ -1,55 +1,43 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Indy500.SceneManagement
 {
     public class InGameScene : IScene
     {
-        private Race activeRace;
         private readonly IRenderer renderer;
+        private readonly SceneManager sceneManager;
 
-        private MessageDispatcher messageDispatcher = new MessageDispatcher();
+        public GameManager GameManager { get; }
 
-        public InGameScene()
+        public InGameScene(GameManager gameManager, SceneManager sceneManager)
         {
-            renderer = new Simple2DRenderer(messageDispatcher);
+            renderer = new Simple2DRenderer(gameManager.MessageDispatcher);
+            GameManager = gameManager;
+            this.sceneManager = sceneManager;
         }
 
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager content)
         {
-            MakeNewLevel();
-
             renderer.LoadContent(graphicsDevice, content);
         }
 
-        private void MakeNewLevel()
-        {
-            Level level = Level.Parse(System.IO.File.ReadAllText("LevelExample.txt"));
-            activeRace = RaceBuilder.FromLevel(level, messageDispatcher);
-        }
-
-        private KeyboardState previousState = new KeyboardState();
         public void Update(GameTime gameTime)
         {
-            activeRace.Update(gameTime);
+            GameManager.CurrentRace.Update(gameTime);
             renderer.Update(gameTime);
-
-            KeyboardState currentState = Keyboard.GetState();
-            if (currentState.IsKeyDown(Keys.Back) && previousState.IsKeyUp(Keys.Back))
-                MakeNewLevel();
-            previousState = currentState;
+            if (GameManager.CurrentRace.Mode.IsOver())
+                sceneManager.TransitionTo(SceneState.MainMenu);
         }
 
         public void Draw(GameTime gameTime)
         {
-            renderer.Draw(activeRace, gameTime);
+            renderer.Draw(GameManager.CurrentRace, gameTime);
         }
 
         public void Reset()
         {
-            previousState = new KeyboardState();
         }
     }
 }
