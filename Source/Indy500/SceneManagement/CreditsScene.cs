@@ -32,10 +32,10 @@ namespace Indy500.SceneManagement
             uiRoot.AddChild(new Placeholder(30, 0));
             uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("TitleFont"), "Credits".ToUpper()) { Color = Color.Yellow });
             uiRoot.AddChild(new Placeholder(30, 0));
-            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("MenuItemFont"), "MooCow"));
-            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("MenuItemFont"), "PiscesMike"));
-            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("MenuItemFont"), "Edo"));
-            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("MenuItemFont"), "RB"));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "Edgar Cocco    https://github.com/edgarcocco"));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "       Joel    https://github.com/moolicc   "));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), " PiscesMike    https://github.com/PiscesMike"));
+            uiRoot.AddChild(new TextBlock(content.Load<SpriteFont>("BodyFont"), "RB Whitaker    https://github.com/rbwhitaker"));
 
             uiRoot.AddChild(new Placeholder(30, 0));
             uiRoot.AddChild(new MenuItem(content.Load<Texture2D>("MenuItemLeftMarker"), content.Load<Texture2D>("MenuItemRightMarker"), content.Load<SpriteFont>("MenuItemFont"), "Back".ToUpper()) { ActiveColor = Color.White, InactiveColor = Color.DarkGray, Active = true  });

@@ -118,3 +118,10 @@
 /processorParam:TextureFormat=Color
 /build:MenuItemRightMarker.png
 
+#begin BodyFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:BodyFont.spritefont
+
