@@ -51,7 +51,7 @@ namespace Indy500
             graphics.PreferredBackBufferHeight = GameSettings.Height;
             graphics.ApplyChanges();
 
-            Window.AllowUserResizing = true;
+            //Window.AllowUserResizing = true;
             Window.ClientSizeChanged += WindowSizeChanged;
 
             base.Initialize();
