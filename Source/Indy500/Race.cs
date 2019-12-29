@@ -61,7 +61,7 @@ namespace Indy500
                 
                 if (car.Speed > maxSpeed) car.Speed = maxSpeed;
 
-                if(maxSpeed == 0.5f && car.ControllingPlayer is ControlledPlayer)
+                if(maxSpeed == speedsByType[TrackTileType.Dirt] && car.ControllingPlayer is ControlledPlayer)
                     messageDispatcher.InvokeMessage(MessageType.Collision, car, new MessageArgs());
             }
 
