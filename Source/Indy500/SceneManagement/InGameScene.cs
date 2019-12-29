@@ -22,7 +22,6 @@ namespace Indy500.SceneManagement
         {
             Level level = Level.Parse(System.IO.File.ReadAllText("LevelExample.txt"));
 
-            //activeRace = new Race(CreateSimpleTrack(), CreatePlayers(), new RaceMode(3, 24, 40, 18, 5));
             activeRace = new Race(CreateTrackFromLevel(level), CreatePlayersFromLevel(level), new RaceMode(3, level.StartLine, level.AIWaypoints.Select(l => (LineSegment)l)), messageDispatcher);
 
             renderer.LoadContent(graphicsDevice, content);
@@ -42,32 +41,7 @@ namespace Indy500.SceneManagement
 
             return result;
         }
-
-        private Track CreateSimpleTrack(int rows = 24, int columns = 40, int islandWidth = 18, int islandHeight = 5)
-        {
-            Track track = new Track(rows, columns);
-
-            // Set up the outside edge.
-            for (int x = 0; x < columns; x++)
-            {
-                track[0, x] = TrackTileType.Dirt;
-                track[rows - 1, x] = TrackTileType.Dirt;
-            }
-
-            for (int y = 0; y < rows; y++)
-            {
-                track[y, 0] = TrackTileType.Dirt;
-                track[y, columns - 1] = TrackTileType.Dirt;
-            }
-
-            // Set up the "island" in the middle
-            for (int x = (columns - islandWidth) / 2; x < (columns + islandWidth) / 2; x++)
-                for (int y = (rows - islandHeight) / 2; y < (rows + islandHeight) / 2; y++)
-                    track[y, x] = TrackTileType.Dirt;
-
-            return track;
-        }
-
+        
         private IEnumerable<Car> CreatePlayersFromLevel(Level level)
         {
             int xOffset = 0;
@@ -107,16 +81,6 @@ namespace Indy500.SceneManagement
 
             return cars;
         }
-
-        private IEnumerable<Car> CreatePlayers()
-        {
-            return new List<Car>
-            {
-                new Car(new ControlledPlayer()),
-                new Car(new DoNothingPlayer())
-            };
-        }
-
 
         public void Update(GameTime gameTime)
         {
