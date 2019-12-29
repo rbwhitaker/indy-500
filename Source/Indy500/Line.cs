@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 namespace Indy500
 {
     //Note that this could become a class inheriting polygon..
-    struct Line
+    public struct Line
     {
         public Point StartPoint
         {

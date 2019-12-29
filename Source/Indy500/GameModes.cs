@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Indy500
 {
     [Flags]
-    enum GameModes : byte
+    public enum GameModes : byte
     {
         None,
         Race,

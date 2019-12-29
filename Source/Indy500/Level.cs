@@ -10,7 +10,7 @@ using System.Xml.XPath;
 
 namespace Indy500
 {
-    class Level
+    public class Level
     {
         public string Title { get; set; }
         public Point LevelSize { get; private set; }
