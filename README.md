@@ -1,5 +1,7 @@
 # Indy 500
 
+[![Indy 500 Demo Video](https://img.youtube.com/vi/lZTEWK2c5Dc/0.jpg)](https://www.youtube.com/watch?v=lZTEWK2c5Dc)
+
 On 28 December 2019, a group of four people made a clone of the classic Atari game _Indy 500_ in an 8-hour game development challenge.
 
 We were able to get a lot of the main features of the game implemented in this short time frame:
