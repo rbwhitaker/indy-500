@@ -27,7 +27,7 @@ namespace Indy500
             int minColumn = (int)vehicleBoundingBox.Min.X;
             int maxColumn = (int)vehicleBoundingBox.Max.X + 1;
 
-            for (int row = minRow; row <= maxRow; row++)
+            for (int row = minRow; row < maxRow; row++)
                 for (int column = minColumn; column < maxColumn; column++)
                     yield return new GridCell(row, column);
         }
