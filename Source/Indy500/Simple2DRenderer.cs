@@ -44,6 +44,16 @@ namespace Indy500
                     spriteBatch.Draw(rectangle, new Rectangle((int)(column * tileSize), (int)(row * tileSize), (int)tileSize, (int)tileSize), race.Track[row, column] == TrackTileType.Dirt ? Color.SaddleBrown : Color.Gray);
                 }
             }
+
+            //Car playerCar = race.Cars[0];
+            //foreach(var x in CollisionDetection.IntersectedCells(CollisionDetection.GetBoundaryFor(playerCar)))
+            //{
+            //    spriteBatch.Draw(rectangle, new Rectangle((int)(x.Column * tileSize), (int)(x.Row * tileSize), (int)tileSize, (int)tileSize), new Color(Color.Red, 0.2f));
+            //    foreach (var point in CollisionDetection.GetBoundaryFor(playerCar).Points)
+            //    spriteBatch.Draw(rectangle, new Rectangle((int)(point.X * tileSize - 2), (int)(point.Y * tileSize - 2), 4, 4), Color.Azure);
+            //
+            //}
+
             spriteBatch.End();
 
             particleEngine.Draw(spriteBatch);

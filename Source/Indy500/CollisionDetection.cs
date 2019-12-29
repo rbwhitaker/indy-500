@@ -12,10 +12,12 @@ namespace Indy500
             return new Polygon(new List<Vector2>
             {
                 new Vector2(+car.Size.X / 2, +car.Size.Y / 2),
-                new Vector2(-car.Size.X / 2, +car.Size.Y / 2),
+                new Vector2(+car.Size.X / 2, -car.Size.Y / 2),
                 new Vector2(-car.Size.X / 2, -car.Size.Y / 2),
-                new Vector2(+car.Size.X / 2, -car.Size.Y / 2)
-            }.Select(p => new Vector2(p.X * (float)Math.Cos(car.Heading) + p.Y * (float)Math.Sin(car.Heading)))
+                new Vector2(-car.Size.X / 2, +car.Size.Y / 2)
+            }.Select(p => new Vector2(
+                p.X * (float)Math.Sin(car.Heading) + p.Y * (float)Math.Cos(car.Heading),
+                -p.X * (float)Math.Cos(car.Heading) + p.Y * (float)Math.Sin(car.Heading)))
             .Select(p => p + car.Position));
         }
 
@@ -29,7 +31,28 @@ namespace Indy500
 
             for (int row = minRow; row < maxRow; row++)
                 for (int column = minColumn; column < maxColumn; column++)
-                    yield return new GridCell(row, column);
+                    if(Intersects(polygon, CreatePolygonFromCellBoundary(row, column)))
+                        yield return new GridCell(row, column);
+        }
+
+        private static Polygon CreatePolygonFromCellBoundary(int row, int column)
+        {
+            return new Polygon(new Vector2(column, row), new Vector2(column, row + 1), new Vector2(column + 1, row + 1), new Vector2(column + 1, row));
+        }
+
+        public static bool Intersects(Polygon a, Polygon b) // Assumes convex polygons
+        {
+            foreach(LineSegment aSegment in a.Segments)
+                if (b.Points.All(p => IsOnOutside(aSegment, p))) return false;
+            foreach (LineSegment bSegment in b.Segments)
+                if (a.Points.All(p => IsOnOutside(bSegment, p))) return false;
+            return true;
+        }
+
+        public static bool IsOnOutside(LineSegment segment, Vector2 point)
+        {
+            var value = (segment.End.X - segment.Start.X) * (point.Y - segment.Start.Y) - (segment.End.Y - segment.Start.Y) * (point.X - segment.Start.X);
+            return Math.Sign(value) > 0;
         }
     }
 }

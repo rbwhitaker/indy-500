@@ -7,6 +7,8 @@ namespace Indy500
     public class Polygon
     {
         public IReadOnlyList<Vector2> Points { get; }
+
+        public Polygon(params Vector2[] points) : this((IEnumerable<Vector2>)points) { }
         public Polygon(IEnumerable<Vector2> points)
         {
             Points = points.ToList();
